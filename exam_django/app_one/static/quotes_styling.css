@@ -1,0 +1,66 @@
+* {
+    margin: 0 auto;
+}
+
+#wrapper {
+    width: 900px;
+}
+
+#header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 15px;
+}
+    #quotes_welcome {
+        flex-grow: 7;
+    }
+    header a {
+        flex-grow: 1;
+    }
+    #quotes_logout {
+        flex-grow: 0;
+        margin-right: 5px;
+        margin-left: 25px;
+    }
+
+#quotes_list_and_add{
+    display: flex;
+}
+
+    #quote_list{
+        max-width: 220px;
+    }
+        #each_quote{
+            border: 3px solid black;
+            margin-top: 5px;
+            padding: 5px;
+        }
+        #posted_by{
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        #people_like_this{
+            display: inline-block;
+        }
+        #like_quote_button{
+            box-shadow: 3px 3px 2px black;
+            background-color: white;
+            border-color: black;
+            margin-left: 140px;
+            margin-bottom: 10px;
+            padding: 4px;
+        }
+        button a {
+            color: black;
+        }
+
+    #add_quote{
+        max-width: 220px;
+    }
+    input[type=text] {
+        margin-top: 10px;
+    }
+    textarea {
+        margin-top: 20px;
+    }

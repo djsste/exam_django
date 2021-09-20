@@ -1,0 +1,38 @@
+* {
+    margin: 0 auto;
+}
+
+#wrapper {
+    width: 700px;
+    display: flex;
+    margin-top: 100px;
+}
+
+#register {
+    width: 250px;
+    display: flex;
+}
+
+#login {
+    width: 250px;
+}
+
+label {
+	float: left;
+    width: 85px;
+}
+
+.registration_input {
+    max-width: 80px;
+    margin: 2px;
+}
+
+input[type=submit] {
+    margin-left: 30%;
+    margin-top: 10px;
+    box-shadow: 3px 4px 2px black;
+}
+
+p {
+    margin-bottom: 20px;
+}

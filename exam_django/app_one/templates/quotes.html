@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View and add Quotes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%  static 'quotes_styling.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id=header>
+            <p id="quotes_welcome">Welcome {{current_user.first_name}} {{current_user.last_name}}!</p> 
+            <a  id="quotes_acct_edit" href="{% url 'edit_account_page' id=current_user.id %}">Edit My Account</a>
+            <button id="quotes_logout"><a href="/logout">logout</a></button>
+        </div>
+        <div id="quotes_list_and_add">
+            <div id="quote_list">
+                <p>Quotes</p>
+                    {% for quote in quotes %}
+                        <div id=each_quote>
+                            <p>{{quote.author}}: "{{quote.quote}}"</p>
+                            <p id="posted_by">Posted by <a href="{% url 'view_user' id=quote.uploaded_by.id %}">{{quote.uploaded_by.first_name}} {{quote.uploaded_by.last_name}}</a></p> 
+                            {{quote.users_who_like.first_name}} {{quote.users_who_like.last_name}}
+                            {{ quote.users_who_like.all|length }} <p id="people_like_this">people like this</p> <br>
+                        {% if current_user in quote.users_who_like.all %}
+                        {% else  %}
+                            <button id="like_quote_button"><a href="{% url 'like_quote' id=quote.id %}">Like</a></button>
+                        {% endif %}
+                        <br>
+                        {% if current_user == quote.uploaded_by %}
+                            <a href="{% url 'delete_quote' id=quote.id %}">Delete</a> 
+                        {% endif %}
+                        </div>
+                    {% endfor %}
+            </div>
+            <div id="add_quote">
+                <form action="/upload_quote" method="POST">
+                    <p id=>Add a Quote!</p>
+                    {% csrf_token%}
+                    <label for="author">Author</label>
+                    <input type="text" name="author">
+                    <label for="quote">Quote</label>
+                    <textarea name="quote"cols="10" rows="5">""</textarea>
+                    <input type="submit" value="Submit">
+                </form>
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</body>
+</html>

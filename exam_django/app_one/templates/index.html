@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form and Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%  static 'registration_styling.css' %}">
+</head>
+<body>
+    <div id=wrapper>
+        <div id=register>
+            <form action="/create_user" method="POST">
+                <p>Register</p>
+                {% csrf_token%}
+                <label for="first_name">First Name</label>
+                <input type="text" class="registration_input" name="first_name">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="registration_input" name="last_name">
+                <label for="email">Email</label>
+                <input type="text" class="registration_input" name="email">
+                <label for="password">Password</label>
+                <input type="password" class="registration_input" name="password">
+                <label for="confirm_pw">Confirm PW</label>
+                <input type="password" class="registration_input" name="confirm_pw">
+                <input type="submit" value="Register">
+            </form>
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div id=login>
+            <p>Login</p>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <label for="log_email">Email</label>
+                <input type="text"  class="registration_input" name="log_email">
+                <label for="log_password">Password</label>
+                <input type="password" class="registration_input" name="log_password">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>

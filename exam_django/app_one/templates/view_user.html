@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View User</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%  static 'view_user_styling.css' %}">
+        <div id="logout_and_back">
+            <a href="/quotes">Back</a>
+            <button><a href="/logout">logout</a></button>
+        </div>
+    <div id="wrapper">
+        <p>{{user.first_name}} {{user.last_name}}'s Quotes' </p>
+            {% for quote in user.quotes_uploaded.all %}
+                <div id="each_quote">
+                    {{quote.author}}: "{{quote.quote}}"<br>
+                </div>
+            {% endfor %}
+        
+        
+    </div>
+    
+</head>
+<body>
+    
+</body>
+</html>
